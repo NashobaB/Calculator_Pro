@@ -1,20 +1,27 @@
 package com.calculator_pro.coreybannon.calculatorpro;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class Main extends Activity {
-    private String current_val = "0";
+//    private String current_val = "0";
+    private double val;
+    private double val2;
+    private char action = ' ';
+    private double sum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        //Calling Calculations class
+        final Calculations calculations = new Calculations();
+
+        //Initialising buttons
         final Button one = (Button) findViewById(R.id.button_one);
         final Button two = (Button) findViewById(R.id.button_two);
         final Button three = (Button) findViewById(R.id.button_three);
@@ -37,151 +44,160 @@ public class Main extends Activity {
         //button one click functionality
         one.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "1");
-                }else
-                textview.setText(current_val += "1");
-               /* if((current_val == Math.floor((current_val)) && !Double.isInfinite(current_val)) {
-                }else{
-                    textview.setText("" + current_val);
-                }*/
+                textview.setText(textview.getText() + "1");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         two.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "2");
-                }else
-                textview.setText(current_val += "2");
+                textview.setText(textview.getText() + "2");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         three.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "3");
-                }else
-                textview.setText(current_val += "3");
+                textview.setText(textview.getText() + "3");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         four.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "4");
-                }else
-                textview.setText(current_val += "4");
+                textview.setText(textview.getText() + "4");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         five.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "5");
-                }else
-                textview.setText(current_val += "5");
+                textview.setText(textview.getText() + "5");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         six.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "6");
-                }else
-                textview.setText(current_val += "6");
+                textview.setText(textview.getText() + "6");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         seven.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "7");
-                }else
-                textview.setText(current_val += "7");
+                textview.setText(textview.getText() + "7");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         eight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "8");
-                }else
-                textview.setText(current_val += "8");
+                textview.setText(textview.getText() + "8");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         nine.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "9");
-                }else
-                textview.setText(current_val += "9");
+                textview.setText(textview.getText() + "9");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
         //button two click functionality
         zero.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(current_val.equals("0")){
-                    textview.setText(current_val = "0");
-                }else
-                textview.setText(current_val += "0");
+                textview.setText(textview.getText() + "0");
+                val = Double.parseDouble(textview.getText().toString());
             }
         });
 
-        //button two click functionality
+        //Work in progress
+        /*//button two click functionality
         dot.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 textview.setText(current_val += ".");
             }}
-        );
+        );*/
 
-        //button two click functionality
-        equals.setOnClickListener(new View.OnClickListener() {
+        //button zero click functionality
+        c.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textview.setText(current_val += "=");
+                textview.setText("");
+                action = ' ';
+                val2 = 0;
+                val = 0;
             }}
         );
 
-        //button two click functionality
-        c.setOnClickListener(new View.OnClickListener() {
+        //button equals click functionality
+        equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textview.setText(current_val = "0");
+                sum = calculations.equals(val,val2,action);
+                textview.setText(String.valueOf(sum));
+                val2 = sum;
+                action = ' ';
+                val = 0;
             }}
         );
 
         //button two click functionality
         divide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textview.setText(current_val += "/");
+                action = '/';
+                if(val2 == 0)
+                    val2 = val;
+                else
+                    calculations.equals(val,val2,action);
+                textview.setText(null);
+                val = 0;
             }}
         );
 
         multiply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textview.setText(current_val += "x");
+                action = 'x';
+                if(val2 == 0)
+                    val2 = val;
+                else
+                    calculations.equals(val,val2,action);
+                textview.setText(null);
+                val = 0;
             }}
         );
 
         minus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textview.setText(current_val += "-");
+                action = '-';
+                if(val2 == 0)
+                    val2 = val;
+                else
+                    calculations.equals(val,val2,action);
+                textview.setText(null);
+                val = 0;
             }}
         );
 
         plus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textview.setText(current_val += "+");
+                action = '+';
+                if(val2 == 0)
+                    val2 = val;
+                else
+                    calculations.equals(val,val2,action);
+                textview.setText(null);
+                val = 0;
             }}
+
         );
 
     }

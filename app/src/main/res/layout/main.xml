@@ -300,8 +300,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:inputType="number|numberDecimal"
-            android:text="@string/output" />
+            android:inputType="number|numberDecimal" />
     </RelativeLayout>
 
 </RelativeLayout>
