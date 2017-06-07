@@ -298,9 +298,12 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
+            android:inputType="number|numberDecimal"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textSize="120px"
             android:layout_alignParentTop="true"
-            android:inputType="number|numberDecimal" />
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
 </RelativeLayout>

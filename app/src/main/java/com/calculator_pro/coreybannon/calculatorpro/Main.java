@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Main extends Activity {
-//    private String current_val = "0";
     private double val;
     private double val2;
     private char action = ' ';
@@ -143,7 +142,11 @@ public class Main extends Activity {
         equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 sum = calculations.equals(val,val2,action);
-                textview.setText(String.valueOf(sum));
+                if ((sum == Math.floor(sum)) && !Double.isInfinite(sum)) {
+                    textview.setText(String.valueOf((int)sum));
+                }else {
+                    textview.setText(String.valueOf(sum));
+                }
                 val2 = sum;
                 action = ' ';
                 val = 0;
